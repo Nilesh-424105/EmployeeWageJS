@@ -1,4 +1,4 @@
-// UC6: Store the Daily Wage Along With Total Wage Using Array
+// UC8: Store the Day and the Daily Wage along with the Total Wage
 //Constant
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
@@ -21,13 +21,16 @@ function getWorkingHours(empCheck){
             return 0;
     }
 }
+
+let totalEmpHrs = 0;
+let totalWorkingDays = 0;
+let empDaillyWageArray = new Array();
+let empDailyWageMap = new Map();
+
 // calculate Daily Wages using function
 function calculateDailyWage(empHrs) {
     return empHrs * WAGE_PER_HOUR;
 }
-let totalEmpHrs = 0;
-let totalWorkingDays = 0;
-let empDaillyWageArray = new Array();
 
 // Calculate total working hours by applying condition 
 while (totalEmpHrs <= MAX_HRS_IN_MONTH &&
@@ -39,7 +42,13 @@ while (totalEmpHrs <= MAX_HRS_IN_MONTH &&
     let empHrs = getWorkingHours(empCheck);
     totalEmpHrs += empHrs;
     empDaillyWageArray.push(calculateDailyWage(empHrs));
+    empDailyWageMap.set(totalWorkingDays, calculateDailyWage(empHrs));
+}
+// Calculate total Wages using Function
+console.log(empDailyWageMap);
+function totalWages(totalWage, dailyWage) {
+    return totalWage + dailyWage;
 }
 // Calculate Employee Monthly Wages
 let empWage = calculateDailyWage(totalEmpHrs);
-console.log(" Total Working Hours: " + totalEmpHrs +" Employee Wages: " + empWage);
+console.log(" Emp Wage Map Total Hours: " + Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
