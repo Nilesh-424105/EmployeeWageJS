@@ -1,8 +1,24 @@
-//UC 1: Employee is Present or Absent
+// UC2: Calcuate Dailly Employee Wage
+//Constant
+const IS_PART_TIME = 1;
+const IS_FULL_TIME = 2;
+const PART_TIME_HOURS = 4;
+const FULL_TIME_HOURS = 8;
+const RATE_PER_HOUR = 20;
 
-let IS_PRESENT = 1;
-let empCheck = Math.floor(Math.random() * 10) % 2;
-if (empCheck == 1)
-    console.log("Employee is PRESENT");
-else
-    console.log("Employee is ABSENT");
+// Variables
+let empHrs = 0,
+ empCheck = Math.floor(Math.random() * 10) % 3; 
+switch (empCheck) {
+    case IS_PART_TIME:
+        empHrs = PART_TIME_HOURS;
+        break;
+    case IS_FULL_TIME:
+        empHrs = FULL_TIME_HOURS;
+        break;
+    default:
+        empHrs = 0;
+}
+// Calculate Employee Wages
+empWage = empHrs * RATE_PER_HOUR;
+console.log("Employee Wage: " + empWage);
